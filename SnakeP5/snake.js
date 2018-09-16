@@ -23,6 +23,7 @@ function Snake(unit){
       this.xPos += x*this.speed;
       this.prvX = x;
     }
+    
 
     if(this.prvY == -1*y) this.yPos += this.prvY*this.speed;
     else{
