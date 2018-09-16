@@ -11,8 +11,8 @@ function Snake(unit){
   this.size = unit;
   this.speed = unit;
 
-  this.prvX = 1; // previous speed on x
-  this.prvY = 0; // previous speed on y
+  this.prvX = 0; // previous speed on x
+  this.prvY = -1; // previous speed on y
 
   this.xPos = 3*unit;
   this.yPos = 3*unit;
@@ -31,25 +31,32 @@ function Snake(unit){
     this.body.push();
  }
 
-  this.move = function(x,y){ // this move is when the snake has a new direction
+  this.changeDir = function(x,y){ // this move is when the snake has a new direction
+    //console.log("move(x,y) FUNCTION CALLED");
     if(this.prvX ==-1*x){
+      //console.log("NO MOVE");
       for(var i=0;i<=this.body.length-1;i++){
         this.body[i][0] += this.prvX*this.speed;
       }
     } // the snake just moves like it did before
     else{
+      //console.log("SHOULD MOVE");
       for(var i=0;i<=this.body.length-1;i++){
         this.body[i][0] += x*this.speed;
         this.prvX = x;
+
       }
     }
 
     if(this.prvY ==-1*y){
+      //console.log("NO MOVE");
       for(var i=0;i<=this.body.length-1;i++){
         this.body[i][1] += this.prvY*this.speed;
+
       }
     } // the snake just moves like it did before
     else{
+      //console.log("SHOULD MOVE");
       for(var i=0;i<=this.body.length-1;i++){
         this.body[i][1] += y*this.speed;
         this.prvY = y;
@@ -73,11 +80,13 @@ function Snake(unit){
   }
 
   this.move =function(){ // this move is when the snake just move forward
+    //console.log("move() FUNCTION CALLED");
     for(var i=0;i<=this.body.length-1;i++){
       this.body[i][0] += this.prvX*this.speed;
       this.body[i][1] += this.prvY*this.speed;
     }
   }
+
 
 
 }
