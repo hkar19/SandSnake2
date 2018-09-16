@@ -11,8 +11,8 @@ function Snake(unit){
   this.size = unit;
   this.speed = unit;
 
-  this.prvX = 0; // previous speed on x
-  this.prvY = 1; // previous speed on y
+  this.prvX = 1; // previous speed on x
+  this.prvY = 0; // previous speed on y
 
   this.xPos = 3*unit;
   this.yPos = 3*unit;
