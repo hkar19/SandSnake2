@@ -19,10 +19,18 @@ function draw() {
 
   ular.show();
   pakan.show();
-  if(ular.xPos == pakan.xPos && ular.yPos == pakan.yPos) {
+
+
+    if(ular.body[0][0] == pakan.xPos && ular.body[0][1] == pakan.yPos){
+      pakan.eaten(width,height);
+      ular.eat();
+    }
+
+
+  /*if(ular.xPos == pakan.xPos && ular.yPos == pakan.yPos) {
     pakan.eaten(width, height);
     //ular.eat();
-  }
+  }*/
   ular.move();
 
   // this ifs ensure the snake will reappear on the other side

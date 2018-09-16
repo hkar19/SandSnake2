@@ -28,7 +28,10 @@ function Snake(unit){
   }
 
   this.eat = function(){
-    this.body.push();
+    var x = this.body[this.body.length-1][0];
+    var y = this.body[this.body.length-1][1]
+    this.move();
+    this.body.push([x,y]);
  }
 
   this.changeDir = function(x,y){ // this move is when the snake has a new direction
