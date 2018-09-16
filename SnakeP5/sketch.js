@@ -14,11 +14,22 @@ function setup() {
 function draw() {
   // put drawing code here
   background(0);
+
+
+
   ular.show();
+  pakan.show();
+  if(ular.xPos == pakan.xPos && ular.yPos == pakan.yPos) {
+    pakan.eaten(width, height);
+    //ular.eat();
+  }
   ular.move(ular.prvX,ular.prvY);
 
-  pakan.show();
-  if(ular.xPos == pakan.xPos && ular.yPos == pakan.yPos) pakan.eaten(width, height);
+  if(ular.xPos >= width) ular.xPos = 0;
+  if(ular.xPos < 0) ular.xPos = width-unit;
+  if(ular.yPos >= height) ular.yPos = 0;
+  if(ular.yPos < 0) ular.yPos = height-unit;
+
 }
 /* the snake cannot move to opposite of its current moving direction */
 function keyPressed(){
