@@ -29,9 +29,9 @@ function draw() {
   // when the snake moved offgrid
   for(var i=0;i<ular.body.length;i++){
     if(ular.body[i][0] >= width) ular.body[i][0] = 0;
-    if(ular.body[i][0] < width) ular.body[i][0] = width-unit;
+    if(ular.body[i][0] < 0) ular.body[i][0] = width-unit;
     if(ular.body[i][1] >= height) ular.body[i][1] = 0;
-    if(ular.body[i][1] < width) ular.body[i][1] = height-unit;
+    if(ular.body[i][1] < 0) ular.body[i][1] = height-unit;
   }
 
   /*if(ular.xPos >= width) ular.xPos = 0;
