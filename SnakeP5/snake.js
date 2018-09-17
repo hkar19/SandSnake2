@@ -12,20 +12,56 @@ function Snake(unit){
   this.speed = unit;
 
   this.prvX = 0; // previous speed on x
-  this.prvY = 0; // previous speed on y
+  this.prvY = -1; // previous speed on y
 
   this.xPos = 3*unit;
   this.yPos = 3*unit;
 
-  this.show = function(){
-    fill(255);
-    rect(this.xPos,this.yPos,this.size,this.size);
+  this.body = [[this.xPos,this.yPos]];
+
+  // this function will taking color to draw
+  this.show = function(x,y,z){
+    fill(x,y,z);
+    for(var i=0;i<=this.body.length-1;i++){
+      rect(this.body[i][0],this.body[i][1], this.size, this.size);
+    }
+    //rect(this.xPos,this.yPos,this.size,this.size);
   }
   //this.eat = function(){
 
 //  }
 
-  this.move = function(x,y){
+  this.eat = function(){
+    var x = this.body[this.body.length-1][0];
+    var y = this.body[this.body.length-1][1];
+    this.body.push([x,y]);
+ }
+
+  this.changeDir = function(x,y){ // this move is when the snake has a new direction
+    //console.log("move(x,y) FUNCTION CALLED");
+    // this method only change HEAD direction.
+
+    if(this.prvX ==-1*x){
+      //console.log("NO MOVE");
+        this.body[0][0] += this.prvX*this.speed;
+    } // the snake just moves like it did before
+    else{
+      //console.log("SHOULD MOVE");
+        this.body[0][0] += x*this.speed;
+        this.prvX = x;
+    }
+
+    if(this.prvY ==-1*y){
+      //console.log("NO MOVE");
+        this.body[0][1] += this.prvY*this.speed;
+    } // the snake just moves like it did before
+    else{
+      //console.log("SHOULD MOVE");
+        this.body[0][1] += y*this.speed;
+        this.prvY = y;
+    }
+
+/*
     if(this.prvX ==-1*x) this.xPos += this.prvX*this.speed;
     else{
       this.xPos += x*this.speed;
@@ -38,8 +74,36 @@ function Snake(unit){
       this.yPos += y*this.speed;
       this.prvY = y;
     }
-
+*/
   }
 
+  this.move =function(){ // this move is when the snake just move forward
+    //console.log("move() FUNCTION CALLED");
 
+
+    // for(var i=0;i<=this.body.length-1;i++){
+    //   this.body[i][0] += this.prvX*this.speed;
+    //   this.body[i][1] += this.prvY*this.speed;
+    // }
+
+    // each bit of tail will pass its own x position and y position
+    // starting from the end to the 2 bit of tail
+    for(var i=this.body.length-1;i>0;i--){
+      this.body[i][0] = this.body[i-1][0];
+      this.body[i][1] = this.body[i-1][1];
+    }
+    // the head will gain new x and y position
+      this.body[0][0] += this.prvX*this.speed;
+      this.body[0][1] += this.prvY*this.speed;
+  }
+
+  this.hitTails = function(){
+    var headX = this.body[0][0];
+    var headY = this.body[0][1];
+
+    for(var i=1;i<this.body.length;i++){
+      if(headX == this.body[i][0] && headY == this.body[i][1]) return true;
+      else false;
+    }
+  }
 }
