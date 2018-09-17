@@ -29,41 +29,32 @@ function Snake(unit){
 
   this.eat = function(){
     var x = this.body[this.body.length-1][0];
-    var y = this.body[this.body.length-1][1]
-    this.move();
+    var y = this.body[this.body.length-1][1];
     this.body.push([x,y]);
  }
 
   this.changeDir = function(x,y){ // this move is when the snake has a new direction
     //console.log("move(x,y) FUNCTION CALLED");
+    // this method only change HEAD direction.
+
     if(this.prvX ==-1*x){
       //console.log("NO MOVE");
-      for(var i=0;i<=this.body.length-1;i++){
-        this.body[i][0] += this.prvX*this.speed;
-      }
+        this.body[0][0] += this.prvX*this.speed;
     } // the snake just moves like it did before
     else{
       //console.log("SHOULD MOVE");
-      for(var i=0;i<=this.body.length-1;i++){
-        this.body[i][0] += x*this.speed;
+        this.body[0][0] += x*this.speed;
         this.prvX = x;
-
-      }
     }
 
     if(this.prvY ==-1*y){
       //console.log("NO MOVE");
-      for(var i=0;i<=this.body.length-1;i++){
-        this.body[i][1] += this.prvY*this.speed;
-
-      }
+        this.body[0][1] += this.prvY*this.speed;
     } // the snake just moves like it did before
     else{
       //console.log("SHOULD MOVE");
-      for(var i=0;i<=this.body.length-1;i++){
-        this.body[i][1] += y*this.speed;
+        this.body[0][1] += y*this.speed;
         this.prvY = y;
-      }
     }
 
 /*
@@ -84,10 +75,22 @@ function Snake(unit){
 
   this.move =function(){ // this move is when the snake just move forward
     //console.log("move() FUNCTION CALLED");
-    for(var i=0;i<=this.body.length-1;i++){
-      this.body[i][0] += this.prvX*this.speed;
-      this.body[i][1] += this.prvY*this.speed;
+
+
+    // for(var i=0;i<=this.body.length-1;i++){
+    //   this.body[i][0] += this.prvX*this.speed;
+    //   this.body[i][1] += this.prvY*this.speed;
+    // }
+
+    // each bit of tail will pass its own x position and y position
+    // starting from the end to the 2 bit of tail
+    for(var i=this.body.length-1;i>0;i--){
+      this.body[i][0] = this.body[i-1][0];
+      this.body[i][1] = this.body[i-1][1];
     }
+    // the head will gain new x and y position
+      this.body[0][0] += this.prvX*this.speed;
+      this.body[0][1] += this.prvY*this.speed;
   }
 
 
