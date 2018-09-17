@@ -17,7 +17,7 @@ function draw() {
 
 
 
-  ular.show();
+  ular.show(255,255,255);
   pakan.show();
 
 
@@ -35,18 +35,17 @@ function draw() {
 
   // this ifs ensure the snake will reappear on the other side
   // when the snake moved offgrid
-  for(var i=0;i<ular.body.length;i++){
-    if(ular.body[i][0] >= width) ular.body[i][0] = 0;
-    if(ular.body[i][0] < 0) ular.body[i][0] = width-unit;
-    if(ular.body[i][1] >= height) ular.body[i][1] = 0;
-    if(ular.body[i][1] < 0) ular.body[i][1] = height-unit;
-  }
+    if(ular.body[0][0] >= width) ular.body[0][0] = 0;
+    if(ular.body[0][0] < 0) ular.body[0][0] = width-unit;
+    if(ular.body[0][1] >= height) ular.body[0][1] = 0;
+    if(ular.body[0][1] < 0) ular.body[0][1] = height-unit;
 
-  /*if(ular.xPos >= width) ular.xPos = 0;
-  if(ular.xPos < 0) ular.xPos = width-unit;
-  if(ular.yPos >= height) ular.yPos = 0;
-  if(ular.yPos < 0) ular.yPos = height-unit;
-  */
+  // GAME OVER
+  // the snake will turns red and stop moving
+  if(ular.hitTails()){
+    ular.show(255,0,0);
+    noLoop();
+  }
 }
 /* the snake cannot move to opposite of its current moving direction */
 function keyPressed(){

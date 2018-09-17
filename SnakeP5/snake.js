@@ -19,8 +19,9 @@ function Snake(unit){
 
   this.body = [[this.xPos,this.yPos]];
 
-  this.show = function(){
-    fill(255);
+  // this function will taking color to draw
+  this.show = function(x,y,z){
+    fill(x,y,z);
     for(var i=0;i<=this.body.length-1;i++){
       rect(this.body[i][0],this.body[i][1], this.size, this.size);
     }
@@ -93,6 +94,13 @@ function Snake(unit){
       this.body[0][1] += this.prvY*this.speed;
   }
 
+  this.hitTails = function(){
+    var headX = this.body[0][0];
+    var headY = this.body[0][1];
 
-
+    for(var i=1;i<this.body.length;i++){
+      if(headX == this.body[i][0] && headY == this.body[i][1]) return true;
+      else false;
+    }
+  }
 }
