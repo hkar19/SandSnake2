@@ -14,9 +14,6 @@ function setup() {
 function draw() {
   // put drawing code here
   background(0);
-
-
-
   ular.show(255,255,255);
   pakan.show();
 

@@ -27,6 +27,9 @@ function Snake(unit){
     }
     //rect(this.xPos,this.yPos,this.size,this.size);
   }
+  //this.eat = function(){
+
+//  }
 
   this.eat = function(){
     var x = this.body[this.body.length-1][0];
