@@ -6,20 +6,24 @@
 // the head moves and all old tails will follow.
 // new tail will be added to the end
 
-
+/*
+Snake constructor
+@param unit the size of snake
+*/
 function Snake(unit){
-  this.size = unit;
+  this.size = unit; // size of snake
   this.speed = unit;
 
-  this.prvX = 0; // previous speed on x
-  this.prvY = -1; // previous speed on y
+  this.prvX = 0; // previous speed of the head on x
+  this.prvY = -1; // previous speed of the head on y
 
-  this.xPos = 3*unit;
-  this.yPos = 3*unit;
+  this.xPos = 3*unit; // starting head position on X
+  this.yPos = 3*unit; // starting head position on Y
 
-  this.body = [[this.xPos,this.yPos]];
+  this.body = [[this.xPos,this.yPos]]; // array for snake's body
 
-  // this function will taking color to draw
+  // this function will taking color to draw snake
+  // @param x,y,z Color in RGB
   this.show = function(x,y,z){
     fill(x,y,z);
     for(var i=0;i<=this.body.length-1;i++){
@@ -27,13 +31,18 @@ function Snake(unit){
     }
   }
   
+  // this function will tell snake to eat and add tail to the end of body
   this.eat = function(){
     var x = this.body[this.body.length-1][0];
     var y = this.body[this.body.length-1][1];
     this.body.push([x,y]);
  }
-
-  this.changeDir = function(x,y){ // this move is when the snake has a new direction
+  
+  // this move is when the snake's head has a new direction
+  // this method prevents snake to move backward
+  // @param x direction to x axis
+  // @param y direction to y axis
+  this.changeDir = function(x,y){ 
     //console.log("move(x,y) FUNCTION CALLED");
     // this method only change HEAD direction.
 
@@ -57,8 +66,9 @@ function Snake(unit){
         this.prvY = y;
     }
   }
-
-  this.move =function(){ // this move is when the snake just move forward
+  
+  // this move is when the snake just move forward
+  this.move =function(){  
     //console.log("move() FUNCTION CALLED");
 
     // each bit of tail will pass its own x position and y position
@@ -71,7 +81,8 @@ function Snake(unit){
       this.body[0][0] += this.prvX*this.speed;
       this.body[0][1] += this.prvY*this.speed;
   }
-
+  
+  // this is when the snake bit its tail
   this.hitTails = function(){
     var headX = this.body[0][0];
     var headY = this.body[0][1];
