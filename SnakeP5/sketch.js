@@ -2,7 +2,6 @@ var unit =15;
 var ular;
 var pakan;
 function setup() {
-  // put setup code here
   createCanvas(600,600);
   frameRate(14);
   this.ular = new Snake(this.unit);
@@ -12,7 +11,7 @@ function setup() {
 }
 
 function draw() {
-  // put drawing code here
+  
   background(0);
   ular.show(255,255,255);
   pakan.show();
@@ -23,11 +22,6 @@ function draw() {
       ular.eat();
     }
 
-
-  /*if(ular.xPos == pakan.xPos && ular.yPos == pakan.yPos) {
-    pakan.eaten(width, height);
-    //ular.eat();
-  }*/
   ular.move();
 
   // this ifs ensure the snake will reappear on the other side
