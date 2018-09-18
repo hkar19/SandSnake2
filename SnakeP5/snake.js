@@ -25,12 +25,8 @@ function Snake(unit){
     for(var i=0;i<=this.body.length-1;i++){
       rect(this.body[i][0],this.body[i][1], this.size, this.size);
     }
-    //rect(this.xPos,this.yPos,this.size,this.size);
   }
-  //this.eat = function(){
-
-//  }
-
+  
   this.eat = function(){
     var x = this.body[this.body.length-1][0];
     var y = this.body[this.body.length-1][1];
@@ -60,31 +56,10 @@ function Snake(unit){
         this.body[0][1] += y*this.speed;
         this.prvY = y;
     }
-
-/*
-    if(this.prvX ==-1*x) this.xPos += this.prvX*this.speed;
-    else{
-      this.xPos += x*this.speed;
-      this.prvX = x;
-    }
-
-
-    if(this.prvY == -1*y) this.yPos += this.prvY*this.speed;
-    else{
-      this.yPos += y*this.speed;
-      this.prvY = y;
-    }
-*/
   }
 
   this.move =function(){ // this move is when the snake just move forward
     //console.log("move() FUNCTION CALLED");
-
-
-    // for(var i=0;i<=this.body.length-1;i++){
-    //   this.body[i][0] += this.prvX*this.speed;
-    //   this.body[i][1] += this.prvY*this.speed;
-    // }
 
     // each bit of tail will pass its own x position and y position
     // starting from the end to the 2 bit of tail
