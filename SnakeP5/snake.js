@@ -89,7 +89,7 @@ function Snake(unit){
 
     for(var i=1;i<this.body.length;i++){
       if(headX == this.body[i][0] && headY == this.body[i][1]) return true;
-      else false;
+      else return false;
     }
   }
 }
